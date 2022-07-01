@@ -26,7 +26,6 @@ if not os.path.isdir(f2_path):
 log_file = open(log_file_path, "a")
 log_file.truncate(0)
 
-# init vector [numefisier1 + " ///// " + datamodificarii1, numefisier2 + " ///// " + datamodificarii2, etc..]
 vector_date_modify_initial = []
 
 for file in os.listdir(f1_path):
@@ -48,7 +47,7 @@ while 1:
         append_value = file + " ///// " + time.ctime(os.path.getmtime(f1_path + "/" + file))
         current_vector.append(append_value)
 
-    # apare un fisier nou
+    # A new file was created
     for current_file in current_vector:
         check = False
         for file_in_old_vector in vector_date_modify_initial:
@@ -65,7 +64,7 @@ while 1:
                 shutil.copytree(f1_path + "\\" + current_file.split(" ///// ")[0],
                         f2_path + "\\" + current_file.split(" ///// ")[0])
 
-    # dispare un fisier
+    # A file was deleted
     for current_file in vector_date_modify_initial:
         check = True
         for file_in_old_vector in current_vector:
